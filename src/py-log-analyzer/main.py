@@ -30,7 +30,7 @@ class RecordStore:
 
 
 if __name__ == "__main__":
-    log_file = open("../../sample.log", "r")
+    log_file = open("sample.log", "r")
 
     record_store = RecordStore()
     for log in log_file:
@@ -78,7 +78,7 @@ if __name__ == "__main__":
     for ip, request_count in invalid_requests.items():
         print(f"{ip:<20}{request_count:<20}")
 
-    with open("../../log_analysis_results.csv", "w") as f:
+    with open("log_analysis_results.csv", "w") as f:
         writer = csv.writer(f)
 
         writer.writerow(["IP Address", "Request Count"])
