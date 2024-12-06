@@ -1,6 +1,6 @@
 #! bin/env/python3
 
-import re
+import re, csv
 
 
 class Record:
@@ -77,3 +77,24 @@ if __name__ == "__main__":
     print(f"{'IP Address':<20}{'Failed Login Attempts':<20}")
     for ip, request_count in invalid_requests.items():
         print(f"{ip:<20}{request_count:<20}")
+
+    with open("../../log_analysis_results.csv", "w") as f:
+        writer = csv.writer(f)
+
+        writer.writerow(["IP Address", "Request Count"])
+        for ip, request_count in ip_request_count.items():
+            writer.writerow([ip, request_count])
+
+        writer.writerow([])
+
+        writer.writerow(["Most Frequently Accessed Endpoints"])
+        for endpoint, access_count in endpoint_access_count.items():
+            writer.writerow([endpoint, access_count])
+
+        writer.writerow([])
+
+        writer.writerow(["Suspicious Activity Detected"])
+        writer.writerow(["IP Address", "Failed Login Attempts"])
+        for ip, request_count in invalid_requests.items():
+            writer.writerow([ip, request_count])
+            
